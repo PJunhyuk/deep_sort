@@ -76,7 +76,8 @@ class NoVisualization(object):
         pass
 
     def run(self, frame_callback):
-        while self.frame_idx <= self.last_idx:
+        # while self.frame_idx <= self.last_idx:
+        while self.frame_idx <= 400:
             frame_callback(self, self.frame_idx)
             self.frame_idx += 1
 

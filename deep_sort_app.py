@@ -169,7 +169,7 @@ def run(sequence_dir, detection_file, output_file, min_confidence,
     results = []
     pose_frame_list = []
 
-    def frame_callback(vis, 400):
+    def frame_callback(vis, frame_idx):
         print("Processing frame %05d" % frame_idx)
 
         # Load image and generate detections.
