@@ -198,17 +198,12 @@ def run(sequence_dir, detection_file, output_file, min_confidence,
             results.append([
                 frame_idx, track.track_id, bbox[0], bbox[1], bbox[2], bbox[3]])
 
-    # Run tracker.
-    # if display:
-    #     visualizer = visualization.Visualization(seq_info, update_ms=5)
-    # else:
-    #     visualizer = visualization.NoVisualization(seq_info)
-    # visualizer.run(frame_callback)
-
-    print("seq_info")
-    print(seq_info)
-    print("frame_callback")
-    print(frame_callback)
+    Run tracker.
+    if display:
+        visualizer = visualization.Visualization(seq_info, update_ms=5)
+    else:
+        visualizer = visualization.NoVisualization(seq_info)
+    visualizer.run(frame_callback)
 
     # Store results.
     f = open(output_file, 'w')
