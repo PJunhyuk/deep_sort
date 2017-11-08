@@ -216,6 +216,7 @@ def run(sequence_dir, detection_file, output_file, min_confidence,
             results.append([
                 frame_idx, track.track_id, bbox[0], bbox[1], bbox[2], bbox[3]])
             draw.rectangle([bbox[0], bbox[1], bbox[2], bbox[3]], outline='red')
+            print([bbox[0], bbox[1], bbox[2], bbox[3]])
 
     # Run tracker.
     visualizer = visualization.NoVisualization(seq_info)
