@@ -167,6 +167,7 @@ def run(sequence_dir, detection_file, output_file, min_confidence,
         "cosine", max_cosine_distance, nn_budget)
     tracker = Tracker(metric)
     results = []
+    pose_frame_list = []
 
     def frame_callback(vis, frame_idx):
         print("Processing frame %05d" % frame_idx)
