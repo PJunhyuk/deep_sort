@@ -228,7 +228,7 @@ def run(sequence_dir, detection_file, output_file, min_confidence,
             row[0], row[1], row[2], row[3], row[4], row[5]),file=f)
 
     video_pose = ImageSequenceClip(pose_frame_list, fps=24)
-    video_pose.write_videofile("test.mov", fps=24, progress_bar=False)
+    video_pose.write_videofile("./results.mov", fps=24, progress_bar=False)
 
 def parse_args():
     """ Parse command line arguments.
