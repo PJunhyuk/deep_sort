@@ -18,7 +18,6 @@ imageio.plugins.ffmpeg.download()
 from moviepy.editor import *
 
 from PIL import Image, ImageDraw, ImageFont
-font = ImageFont.truetype("./font/NotoSans-Bold.ttf", 12)
 
 def gather_sequence_info(sequence_dir, detection_file):
     """Gather sequence information, such as image filenames, detections,
