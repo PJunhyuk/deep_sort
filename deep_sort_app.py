@@ -198,7 +198,7 @@ def run(sequence_dir, detection_file, output_file, min_confidence,
             results.append([
                 frame_idx, track.track_id, bbox[0], bbox[1], bbox[2], bbox[3]])
 
-    Run tracker.
+    # Run tracker.
     if display:
         visualizer = visualization.Visualization(seq_info, update_ms=5)
     else:
