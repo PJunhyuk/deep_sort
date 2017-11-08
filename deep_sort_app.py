@@ -204,8 +204,6 @@ def run(sequence_dir, detection_file, output_file, min_confidence,
         # Prepare saving image with points of pose
         draw = ImageDraw.Draw(image_img)
 
-        draw.rectangle([bbox[0], bbox[1], bbox[2], bbox[3]], outline='red')
-
         image_img_numpy = np.asarray(image_img)
         pose_frame_list.append(image_img_numpy)
 
@@ -216,6 +214,7 @@ def run(sequence_dir, detection_file, output_file, min_confidence,
             bbox = track.to_tlwh()
             results.append([
                 frame_idx, track.track_id, bbox[0], bbox[1], bbox[2], bbox[3]])
+            draw.rectangle([bbox[0], bbox[1], bbox[2], bbox[3]], outline='red')
 
     # Run tracker.
     visualizer = visualization.NoVisualization(seq_info)
