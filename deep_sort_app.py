@@ -183,12 +183,14 @@ def run(sequence_dir, detection_file, output_file, min_confidence,
         tracker.update(detections)
 
         # Update visualization.
-        if display:
-            image = cv2.imread(
-                seq_info["image_filenames"][frame_idx], cv2.IMREAD_COLOR)
-            vis.set_image(image.copy())
-            vis.draw_detections(detections)
-            vis.draw_trackers(tracker.tracks)
+        # if display:
+        #     image = cv2.imread(
+        #         seq_info["image_filenames"][frame_idx], cv2.IMREAD_COLOR)
+        #     vis.set_image(image.copy())
+        #     vis.draw_detections(detections)
+        #     vis.draw_trackers(tracker.tracks)
+
+        print("hi")
 
         # Store results.
         for track in tracker.tracks:
@@ -197,6 +199,7 @@ def run(sequence_dir, detection_file, output_file, min_confidence,
             bbox = track.to_tlwh()
             results.append([
                 frame_idx, track.track_id, bbox[0], bbox[1], bbox[2], bbox[3]])
+            print("hello!")
 
     # Run tracker.
     visualizer = visualization.NoVisualization(seq_info)
