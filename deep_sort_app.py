@@ -13,6 +13,10 @@ from deep_sort import nn_matching
 from deep_sort.detection import Detection
 from deep_sort.tracker import Tracker
 
+from moviepy.editor import *
+
+from PIL import Image, ImageDraw, ImageFont
+font = ImageFont.truetype("./font/NotoSans-Bold.ttf", 12)
 
 def gather_sequence_info(sequence_dir, detection_file):
     """Gather sequence information, such as image filenames, detections,
@@ -182,6 +186,9 @@ def run(sequence_dir, detection_file, output_file, min_confidence,
         tracker.predict()
         tracker.update(detections)
 
+        image = cv2.imread(
+            seq_info["image_filenames"][frame_idx], cv2.IMREAD_COLOR)
+
         # Update visualization.
         # if display:
         #     image = cv2.imread(
@@ -189,6 +196,17 @@ def run(sequence_dir, detection_file, output_file, min_confidence,
         #     vis.set_image(image.copy())
         #     vis.draw_detections(detections)
         #     vis.draw_trackers(tracker.tracks)
+
+        # Add library to draw image
+        image_img = Image.fromarray(image)
+
+        # Prepare saving image with points of pose
+        draw = ImageDraw.Draw(image_img)
+
+        draw.rectangle([bbox[0], bbox[1], bbox[2], bbox[3]], outline='red')
+
+        image_img_numpy = np.asarray(image_img)
+        pose_frame_list.append(image_img_numpy)
 
         # Store results.
         for track in tracker.tracks:
@@ -207,9 +225,9 @@ def run(sequence_dir, detection_file, output_file, min_confidence,
     for row in results:
         print('%d,%d,%.2f,%.2f,%.2f,%.2f,1,-1,-1,-1' % (
             row[0], row[1], row[2], row[3], row[4], row[5]),file=f)
-        print('%d,%d,%.2f,%.2f,%.2f,%.2f,1,-1,-1,-1' % (
-            row[0], row[1], row[2], row[3], row[4], row[5]))
 
+    video_pose = ImageSequenceClip(pose_frame_list, fps=24)
+    video_pose.write_videofile("test.mov", fps=24, progress_bar=False)
 
 def parse_args():
     """ Parse command line arguments.
