@@ -13,6 +13,8 @@ from deep_sort import nn_matching
 from deep_sort.detection import Detection
 from deep_sort.tracker import Tracker
 
+import imageio
+imageio.plugins.ffmpeg.download()
 from moviepy.editor import *
 
 from PIL import Image, ImageDraw, ImageFont
