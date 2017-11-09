@@ -205,9 +205,6 @@ def run(sequence_dir, detection_file, output_file, min_confidence,
         # Prepare saving image with points of pose
         draw = ImageDraw.Draw(image_img)
 
-        image_img_numpy = np.asarray(image_img)
-        pose_frame_list.append(image_img_numpy)
-
         # Store results.
         for track in tracker.tracks:
             if not track.is_confirmed() or track.time_since_update > 1:
@@ -217,6 +214,9 @@ def run(sequence_dir, detection_file, output_file, min_confidence,
                 frame_idx, track.track_id, bbox[0], bbox[1], bbox[2], bbox[3]])
             draw.rectangle([int(bbox[0]), int(bbox[1]), int(bbox[2]), int(bbox[3])], outline='red')
             print([int(bbox[0]), int(bbox[1]), int(bbox[2]), int(bbox[3])])
+
+        image_img_numpy = np.asarray(image_img)
+        pose_frame_list.append(image_img_numpy)
 
     # Run tracker.
     visualizer = visualization.NoVisualization(seq_info)
