@@ -190,6 +190,8 @@ def run(sequence_dir, detection_file, output_file, min_confidence,
 
         image = cv2.imread(
             seq_info["image_filenames"][frame_idx], cv2.IMREAD_COLOR)
+        print(image.shape[0])
+        print(image.shape[1])
 
         # Update visualization.
         # if display:
@@ -218,7 +220,7 @@ def run(sequence_dir, detection_file, output_file, min_confidence,
             bbox_height = int(bbox[3])
             bbox_right = bbox_left + bbox_width
             bbox_bottom = bbox_top + bbox_height
-            draw.rectangle([bbox_top, bbox_left, bbox_right, bbox_bottom], outline='red')
+            draw.rectangle([bbox_left, bbox_top, bbox_right, bbox_bottom], outline='red')
             print([int(bbox[0]), int(bbox[1]), int(bbox[2]), int(bbox[3])])
 
         image_img_numpy = np.asarray(image_img)
